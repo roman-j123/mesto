@@ -1,0 +1,8 @@
+.elements {
+  margin: 0 0 60px 0;
+}
+@media (max-width: 768px) {
+  .elements {
+    margin: 0 0 48px 0;
+  }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
+</head>
+
+<body class="page">
+  <header class="header">
+    <img src="./images/logo.svg" class="header__logo" alt="Логотип сайта">
+  </header>
+  <main class="main">
+    <section class="profile">
+      <img src="./images/avatar.jpg" class="profile__avatar" alt="Жак-Ив Кусто">
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button class="profile__button profile__button_type_edit" title="Редактировать профиль" aria-label="Редактировать профиль"></button>
+        <p class="profile__description">Исследователь океана</p>
+      </div>
+      <button class="profile__button profile__button_type_add" title="Добавить фотографию" aria-label="Добавить фотографию"></button>
+    </section>
+    <section class="elements">
+      <ul class="elements__list">
+        <li class="elements__item">
+          <img src="./images/image_1.jpg" class="elements__image" alt="Карачаевск">
+          <div class="elements__card-container">
+            <h2 class="elements__header">Карачаевск</h2>
+            <button class="elements__like" title="Оценить фотографию" aria-label="Поставить лайк"></button>
+          </div>
+        </li>
+        <li class="elements__item">
+          <img src="./images/image_2.jpg" class="elements__image" alt="Гора Эльбрус">
+          <div class="elements__card-container">
+            <h2 class="elements__header">Гора Эльбрус</h2>
+            <button class="elements__like" title="Оценить фотографию" aria-label="Поставить лайк"></button>
+          </div>
+        </li>
+        <li class="elements__item">
+          <img src="./images/image_3.jpg" class="elements__image" alt="Домбай">
+          <div class="elements__card-container">
+            <h2 class="elements__header">Домбай</h2>
+            <button class="elements__like" title="Оценить фотографию" aria-label="Поставить лайк"></button>
+          </div>
+        </li>
+        <li class="elements__item">
+          <img src="./images/image_2.jpg" class="elements__image" alt="Гора Эльбрус">
+          <div class="elements__card-container">
+            <h2 class="elements__header">Гора Эльбрус</h2>
+            <button class="elements__like" title="Оценить фотографию" aria-label="Поставить лайк"></button>
+          </div>
+        </li>
+        <li class="elements__item">
+          <img src="./images/image_3.jpg" class="elements__image" alt="Домбай">
+          <div class="elements__card-container">
+            <h2 class="elements__header">Домбай</h2>
+            <button class="elements__like" title="Оценить фотографию" aria-label="Поставить лайк"></button>
+          </div>
+        </li>
+        <li class="elements__item">
+          <img src="./images/image_1.jpg" class="elements__image" alt="Карачаевск">
+          <div class="elements__card-container">
+            <h2 class="elements__header">Карачаевск</h2>
+            <button class="elements__like" title="Оценить фотографию" aria-label="Поставить лайк"></button>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+  </footer>
+  <section class="popup">
+    <div class="popup__container">
+      <button class="popup__close" title="Закрыть окно" aria-label="Закрыть"></button>
+      <form action="post" class="popup__form">
+        <fieldset class="popup__fieldset">
+          <legend class="popup__header">Редактировать профиль</legend>
+          <input type="text" class="popup__input" name="name" value="" placeholder="Имя пользователя">
+          <input type="text" class="popup__input" name="description" value="" placeholder="Описание пользователя">
+          <button class="popup__button">Сохранить</button>
+        </fieldset>
+      </form>
+    </div>
+  </section>
+  <script src="./scripts/index.js"></script>
+</body>
+
+</html>
