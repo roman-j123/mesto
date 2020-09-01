@@ -8,11 +8,9 @@ let popupInput = formElement.querySelectorAll('.popup__input'); // Находи�
 let popupSaveButton = popup.querySelector('.popup__button');
 
 const openPopup = () => {
-  togglePopup();
-  if(popup.classList.contains('popup_open')) {
-    popupInput[0].value = profileName.textContent;
-    popupInput[1].value = profileDesc.textContent;
-  }
+  popupInput[0].value = profileName.textContent;
+  popupInput[1].value = profileDesc.textContent;
+  return togglePopup();
 }
 const togglePopup = () => {
   return popup.classList.toggle('popup_open')
@@ -21,7 +19,7 @@ const formSubmitHandler = (evt) => {
   evt.preventDefault();
   profileName.textContent = popupInput[0].value;
   profileDesc.textContent = popupInput[1].value;
-  togglePopup();
+  return togglePopup();
 }
 
 openPopupButton.addEventListener('click', openPopup); // Вешаем обработчик клика на кнопку открытия popup
