@@ -47,17 +47,21 @@ const formSubmitHandler = (evt) => {
   profileDesc.textContent = popupInput[1].value;
   togglePopup(evt);
 }
+// Функция добавления карточек при помощи JS`c
+const addCards = () => {
+  initialCards.map(function (el) {
+    const cardTemplate = document.querySelector('#template-card').content;
+    const cardElement = cardTemplate.cloneNode(true);
+    cardElement.querySelector('.elements__image').setAttribute('src', el.link);
+    cardElement.querySelector('.elements__header').textContent = el.name;
+    elementsList.append(cardElement);
+    console.log(cardElement);
+  })
+}
 
+addCards();
 openPopupButton.addEventListener('click', openPopup); // Вешаем обработчик клика на кнопку открытия popup
 closePopupButton.addEventListener('click', togglePopup); // Вешаем обработчик клика на кнопку закрытия popup
 formElement.addEventListener('submit',formSubmitHandler);
 
-initialCards.map(function (el) {
-  const cardTemplate = document.querySelector('#template-card').content;
-  const cardElement = cardTemplate.cloneNode(true);
-  cardElement.querySelector('.elements__image').setAttribute('src', el.link);
-  cardElement.querySelector('.elements__header').textContent = el.name;
-  elementsList.append(cardElement);
-  console.log(cardElement);
-})
 
