@@ -5,7 +5,6 @@ let openPopupButton = document.querySelector('.profile__button_type_edit'); // �
 let closePopupButton = popup.querySelector('.popup__close'); // Находим кнопку для закрытия popup
 let formElement = popup.querySelector('.popup__form'); // Находим форму в DOM
 let popupInput = formElement.querySelectorAll('.popup__input'); // Находим input в DOM
-let popupSaveButton = popup.querySelector('.popup__button');
 
 const openPopup = () => {
   popupInput[0].value = profileName.textContent;
@@ -19,7 +18,7 @@ const formSubmitHandler = (evt) => {
   evt.preventDefault();
   profileName.textContent = popupInput[0].value;
   profileDesc.textContent = popupInput[1].value;
-  return togglePopup();
+  togglePopup(evt);
 }
 
 openPopupButton.addEventListener('click', openPopup); // Вешаем обработчик клика на кнопку открытия popup
