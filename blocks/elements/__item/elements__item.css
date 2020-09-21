@@ -2,5 +2,6 @@
   margin: 0 auto;
   width: 282px;
   background-color: #ffffff;
+  position: relative;
   border-radius: 10px;
 }

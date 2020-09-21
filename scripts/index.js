@@ -74,15 +74,29 @@ const formSubmitAdd = (evt) => {
 const render = () => {
   elementsList.innerHTML = " ";
   initialCards.forEach(renderCard);
+  setListeners();
 }
 
-const renderCard = (el) => {
+const renderCard = (el, index) => {
   const cardTemplate = document.querySelector('#template-card').content;
   const cardElement = cardTemplate.cloneNode(true);
+  cardElement.querySelector('.elements__item').setAttribute('data-id', index);
   cardElement.querySelector('.elements__image').setAttribute('src', el.link);
   cardElement.querySelector('.elements__image').setAttribute('alt', el.name);
   cardElement.querySelector('.elements__header').textContent = el.name;
   elementsList.prepend(cardElement);
+}
+
+const deleteCard = (event) => {
+  const index = event.target.parentNode.dataset.id;
+  initialCards.splice(index,1);
+  render();
+}
+
+const setListeners = () => {
+  elementsList.querySelectorAll('.elements__delete').forEach((btn) => {
+    btn.addEventListener('click', deleteCard);
+  })
 }
 //Окно редактирования
 popupLoadData();
