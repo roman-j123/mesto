@@ -28,40 +28,69 @@ const elementsList = document.querySelector('.elements__list'); // Находи�
 const profileName = document.querySelector('.profile__name'); // Находим блок с именем
 const profileDesc = document.querySelector('.profile__description'); // Находим блок с описанием
 const popup = document.querySelector('.popup'); // Находим блок popup
-const openPopupButton = document.querySelector('.profile__button_type_edit'); // Находим кнопку для открытия popup
-const closePopupButton = popup.querySelector('.popup__close'); // Находим кнопку для закрытия popup
+const popupAdd = document.querySelector('.popup_type_photo');
+const popupEdit = document.querySelector('.popup_type_edit');
+const popupSave = popupEdit.querySelector('.popup__button');
+const popupSavePhoto = popupAdd.querySelector('.popup__button');
+const openEditPopup = document.querySelector('.profile__button_type_edit'); // Находим кнопку для открытия popup
+const openAddPopup = document.querySelector('.profile__button_type_add');
+const closeAddButton = popupAdd.querySelector('.popup__close');
+const closeEditButton = popupEdit.querySelector('.popup__close'); // Находим кнопку для закрытия popup
 const formElement = popup.querySelector('.popup__form'); // Находим форму в DOM
 const popupInput = formElement.querySelectorAll('.popup__input'); // Находим input в DOM
-
-const openPopup = () => {
+//Находим инпуты
+const popupInputCardName = document.querySelector('.popup__input_type_name');
+const popupInputCardSrc = document.querySelector('.popup__input_type_src');
+// Напишем функцию открытия
+const openPopup = (popup) => {
+  popup.classList.add('popup_open');
+}
+// Наишем функцию закрытия окна
+const closePopup = (popup) => {
+  popup.classList.remove('popup_open');
+}
+// Напишем фугкцию загрузки данных
+const popupLoadData = () => {
   popupInput[0].value = profileName.textContent;
   popupInput[1].value = profileDesc.textContent;
-  return togglePopup();
 }
-const togglePopup = () => {
-  return popup.classList.toggle('popup_open')
-}
-const formSubmitHandler = (evt) => {
+
+const formSubmitEdit = (evt) => {
   evt.preventDefault();
   profileName.textContent = popupInput[0].value;
   profileDesc.textContent = popupInput[1].value;
-  togglePopup(evt);
-}
-// Функция добавления карточек при помощи JS`c
-const addCards = () => {
-  initialCards.map(function (el) {
-    const cardTemplate = document.querySelector('#template-card').content;
-    const cardElement = cardTemplate.cloneNode(true);
-    cardElement.querySelector('.elements__image').setAttribute('src', el.link);
-    cardElement.querySelector('.elements__header').textContent = el.name;
-    elementsList.append(cardElement);
-    console.log(cardElement);
-  })
+  closePopup(popupEdit);
 }
 
-addCards();
-openPopupButton.addEventListener('click', openPopup); // Вешаем обработчик клика на кнопку открытия popup
-closePopupButton.addEventListener('click', togglePopup); // Вешаем обработчик клика на кнопку закрытия popup
-formElement.addEventListener('submit',formSubmitHandler);
+const formSubmitAdd = (evt) => {
+  evt.preventDefault();
+  const cardName = popupInputCardName.value;
+  const cardImage = popupInputCardSrc.value;
+  initialCards.push({name: cardName, link: cardImage});
+  render();
+  closePopup(popupAdd);
+}
 
+const render = () => {
+  elementsList.innerHTML = " ";
+  initialCards.forEach(renderCard);
+}
 
+const renderCard = (el) => {
+  const cardTemplate = document.querySelector('#template-card').content;
+  const cardElement = cardTemplate.cloneNode(true);
+  cardElement.querySelector('.elements__image').setAttribute('src', el.link);
+  cardElement.querySelector('.elements__image').setAttribute('alt', el.name);
+  cardElement.querySelector('.elements__header').textContent = el.name;
+  elementsList.prepend(cardElement);
+}
+//Окно редактирования
+popupLoadData();
+openAddPopup.addEventListener('click', () => {openPopup(popupAdd)});
+popupSave.addEventListener('click', formSubmitEdit);
+closeAddButton.addEventListener('click', () => {closePopup(popupAdd)});
+//Окно добавления
+openEditPopup.addEventListener('click', () => {openPopup(popupEdit)});
+popupSavePhoto.addEventListener('click', formSubmitAdd);
+closeEditButton.addEventListener('click', () => {closePopup(popupEdit)});
+render();
