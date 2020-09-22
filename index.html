@@ -57,13 +57,23 @@
       </form>
     </div>
   </div>
+  <section class="popup popup_type_zoom">
+    <div class="popup__gallery">
+      <button class="popup__close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
+      <figure class="popup__figure">
+        <img class="popup__image">
+        <figcaption class="popup__figcaption"></figcaption>
+      </figure>
+    </div>
+  </section>
   <template id="template-card">
     <li class="elements__item">
       <button type="button" class="elements__delete"></button>
       <img class="elements__image">
       <div class="elements__card-container">
         <h2 class="elements__header"></h2>
-        <button class="elements__like" type="button" title="Оценить фотографию" aria-label="Поставить лайк"></button>
+        <button class="elements__like" type="button" title="Оценить фотографию" aria-label="Поставить лайк">
+        </button>
       </div>
     </li>
   </template>

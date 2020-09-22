@@ -13,3 +13,6 @@
   -moz-text-size-adjust: 100%;
   box-sizing: content-box;
 }
+.page_overflowed {
+  overflow: hidden;
+}

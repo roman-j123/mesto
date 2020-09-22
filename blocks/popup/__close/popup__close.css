@@ -22,6 +22,8 @@
 
 @media (max-width: 768px) {
   .popup__close {
+    width: 30px;
+    height: 30px;
     right: 0;
   }
 }

@@ -23,9 +23,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02458d09-bdfa-4ecb-8699-f373d99e7a12" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/blocks/elements/__delete/elements__delete.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/like_active.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/elements/__item/elements__item.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/elements/__item/elements__item.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/elements/__image/elements__image.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/elements/__image/elements__image.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/elements/__like/elements__like.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/elements/__like/elements__like.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/elements/elements.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/elements/elements.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/page/page.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/page/page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__close/popup__close.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__close/popup__close.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__container/popup__container.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__container/popup__container.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/popup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/like.svg" beforeDir="false" afterPath="$PROJECT_DIR$/images/like.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/index.js" afterDir="false" />
@@ -79,6 +86,7 @@
       <workItem from="1600174467795" duration="275000" />
       <workItem from="1600526267847" duration="46000" />
       <workItem from="1600526354699" duration="3694000" />
+      <workItem from="1600715448094" duration="21124000" />
     </task>
     <servers />
   </component>
@@ -110,13 +118,17 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="436" y="66" key="RollbackChangesDialog" timestamp="1600703359312">
+      <screen x="0" y="23" width="1440" height="834" />
+    </state>
+    <state x="436" y="66" key="RollbackChangesDialog/0.23.1440.834@0.23.1440.834" timestamp="1600703359312" />
     <state x="277" y="50" key="SettingsEditor" timestamp="1599928524025">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
     <state x="277" y="50" key="SettingsEditor/0.23.1440.834@0.23.1440.834" timestamp="1599928524025" />
-    <state x="426" y="23" width="588" height="834" key="find.popup" timestamp="1600700898775">
+    <state x="352" y="23" width="588" height="834" key="find.popup" timestamp="1600785606801">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
-    <state x="426" y="23" width="588" height="834" key="find.popup/0.23.1440.834@0.23.1440.834" timestamp="1600700898775" />
+    <state x="352" y="23" width="588" height="834" key="find.popup/0.23.1440.834@0.23.1440.834" timestamp="1600785606801" />
   </component>
 </project>
