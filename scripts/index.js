@@ -74,8 +74,8 @@ const formSubmitEdit = (evt) => {
 //Добавление данных новой карточки
 const formSubmitAdd = (evt) => {
   evt.preventDefault();
-  let cardName = popupInputCardName.value;
-  let cardImage = popupInputCardSrc.value;
+  const cardName = popupInputCardName.value;
+  const cardImage = popupInputCardSrc.value;
   initialCards.push({name: cardName, link: cardImage});
   renderCard(cardName, cardImage, initialCards.length - 1);
   closePopup(popupAdd);
@@ -103,8 +103,8 @@ const renderCard = (cardName, cardImage, cardIndex) => {
   elementsList.prepend(cardElement)
 }
 const deleteCard = (evt) => {
-  let obj = evt.target.parentNode;
-  let index = obj.getAttribute('data-id');
+  const obj = evt.target.parentNode;
+  const index = obj.getAttribute('data-id');
   initialCards.splice(index, 1);
   obj.remove();
 }
