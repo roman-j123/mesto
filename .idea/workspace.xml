@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -11,13 +14,20 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:develop" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02458d09-bdfa-4ecb-8699-f373d99e7a12" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blocks/popup/__input/_type/popup__input_type_error.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blocks/popup/__section/popup__section.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/validate.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__button/popup__button.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__button/popup__button.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__input/popup__input.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__input/popup__input.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/index.js" afterDir="false" />
     </list>
@@ -27,6 +37,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GithubPullRequestsUISettings">
@@ -55,7 +70,8 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="run.prettier.on.save" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -70,7 +86,9 @@
       <workItem from="1600174467795" duration="275000" />
       <workItem from="1600526267847" duration="46000" />
       <workItem from="1600526354699" duration="3694000" />
-      <workItem from="1600715448094" duration="23271000" />
+      <workItem from="1600715448094" duration="23992000" />
+      <workItem from="1600808335354" duration="664000" />
+      <workItem from="1601463501458" duration="23952000" />
     </task>
     <servers />
   </component>
@@ -88,7 +106,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="develop" />
                       </list>
                     </value>
                   </entry>
@@ -102,17 +120,37 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="380" y="39" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1600809006958">
+      <screen x="0" y="23" width="1440" height="834" />
+    </state>
+    <state x="380" y="39" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.23.1440.834@0.23.1440.834" timestamp="1600809006958" />
+    <state x="457" y="193" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601643780477">
+      <screen x="0" y="23" width="1440" height="834" />
+    </state>
+    <state x="457" y="193" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.834@0.23.1440.834" timestamp="1601643780477" />
     <state x="436" y="66" key="RollbackChangesDialog" timestamp="1600703359312">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
     <state x="436" y="66" key="RollbackChangesDialog/0.23.1440.834@0.23.1440.834" timestamp="1600703359312" />
-    <state x="277" y="50" key="SettingsEditor" timestamp="1599928524025">
+    <state x="277" y="50" key="SettingsEditor" timestamp="1600808950107">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
-    <state x="277" y="50" key="SettingsEditor/0.23.1440.834@0.23.1440.834" timestamp="1599928524025" />
+    <state x="277" y="50" key="SettingsEditor/0.23.1440.834@0.23.1440.834" timestamp="1600808950107" />
+    <state x="319" y="177" key="Vcs.Push.Dialog.v2" timestamp="1601657757391">
+      <screen x="0" y="23" width="1440" height="834" />
+    </state>
+    <state x="319" y="177" key="Vcs.Push.Dialog.v2/0.23.1440.834@0.23.1440.834" timestamp="1601657757391" />
     <state x="352" y="23" width="588" height="834" key="find.popup" timestamp="1600785606801">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
     <state x="352" y="23" width="588" height="834" key="find.popup/0.23.1440.834@0.23.1440.834" timestamp="1600785606801" />
+    <state x="384" y="199" key="run.anything.popup" timestamp="1601486872367">
+      <screen x="0" y="23" width="1440" height="834" />
+    </state>
+    <state x="384" y="199" key="run.anything.popup/0.23.1440.834@0.23.1440.834" timestamp="1601486872367" />
+    <state x="383" y="178" width="672" height="678" key="search.everywhere.popup" timestamp="1601650047433">
+      <screen x="0" y="23" width="1440" height="834" />
+    </state>
+    <state x="383" y="178" width="672" height="678" key="search.everywhere.popup/0.23.1440.834@0.23.1440.834" timestamp="1601650047433" />
   </component>
 </project>

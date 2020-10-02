@@ -54,10 +54,26 @@ const popupInput = formElement.querySelectorAll('.popup__input'); // Наход�
 // Напишем функцию открытия
 const openPopup = (popup) => {
   popup.classList.add('popup_open');
+  closeByEsc(popup);
+  closeByClick(popup);
 }
 // Наишем функцию закрытия окна
 const closePopup = (popup) => {
   popup.classList.remove('popup_open');
+}
+const closeByEsc = (popup) => {
+  document.addEventListener('keydown', (evt) => {
+    if(evt.key ==='Escape') {
+      popup.classList.remove('popup_open');
+    }
+  });
+}
+const closeByClick = (popup) => {
+  popup.addEventListener('click', (evt) => {
+    if(evt.target === evt.currentTarget) {
+      popup.classList.remove('popup_open');
+    }
+  })
 }
 // Напишем фугкцию загрузки данных
 const popupLoadData = () => {
@@ -96,7 +112,7 @@ const renderCard = (cardName, cardImage, cardIndex) => {
     openPopup(popupZoom);
   });
   cardElement.querySelector('.elements__item').setAttribute('data-id', cardIndex);
-  cardElement.querySelector('.elements__like').addEventListener('click', (evt )=> {
+  cardElement.querySelector('.elements__like').addEventListener('click', (evt) => {
     evt.target.classList.toggle('elements__like_active');
   })
   cardElement.querySelector('.elements__delete').addEventListener('click', deleteCard);
@@ -115,13 +131,21 @@ const renderAll = () => {
 }
 //Окно редактирования
 popupLoadData();
-openAddPopup.addEventListener('click', () => {openPopup(popupAdd)});
+openAddPopup.addEventListener('click', () => {
+  openPopup(popupAdd)
+});
 popupSave.addEventListener('click', formSubmitEdit);
-closeAddButton.addEventListener('click', () => {closePopup(popupAdd)});
+closeAddButton.addEventListener('click', () => {
+  closePopup(popupAdd)
+});
 //Окно добавления
-openEditPopup.addEventListener('click', () => {openPopup(popupEdit)});
+openEditPopup.addEventListener('click', () => {
+  openPopup(popupEdit);
+});
 popupSavePhoto.addEventListener('click', formSubmitAdd);
-closeEditButton.addEventListener('click', () => {closePopup(popupEdit)});
+closeEditButton.addEventListener('click', () => {
+  closePopup(popupEdit);
+});
 //Зум фотографии
 closeZoomButton.addEventListener('click', () => {
   page.classList.remove('page_overflowed');
@@ -130,4 +154,5 @@ closeZoomButton.addEventListener('click', () => {
   zoomingImage.removeAttribute('alt');
   zoomingFigcaption.textContent = '';
 });
+
 renderAll();

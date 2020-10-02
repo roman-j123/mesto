@@ -37,8 +37,10 @@
       <form action="post" class="popup__form">
         <fieldset class="popup__fieldset">
           <legend class="popup__header">Редактировать профиль</legend>
-          <input type="text" class="popup__input" name="name" value="" placeholder="Имя пользователя">
-          <input type="text" class="popup__input" name="description" value="" placeholder="Описание пользователя">
+          <input type="text" class="popup__input" name="name" value="" placeholder="Имя пользователя" minlength="2" maxlength="40" required>
+          <span class="popup__input_type_error" id="name_error" style="color: red;"></span>
+          <input type="text" class="popup__input" name="description" value="" placeholder="Описание пользователя" minlength="2" maxlength="200" required>
+          <span class="popup__input_type_error" id="description_error" style="color: red;"></span>
           <button class="popup__button" type="submit">Сохранить</button>
         </fieldset>
       </form>
@@ -50,8 +52,14 @@
       <form action="post" class="popup__form">
         <fieldset class="popup__fieldset">
           <legend class="popup__header">Новое место</legend>
-          <input type="text" class="popup__input popup__input_type_name" name="name" value="" placeholder="Название">
-          <input type="text" class="popup__input popup__input_type_src" name="description" value="" placeholder="Ссылка на картинку">
+          <section class="popup__section">
+            <input type="text" class="popup__input popup__input_type_name" name="name" value="" placeholder="Название" minlength="2" maxlength="30" required>
+            <span class="popup__input_type_error" id="name_error"></span>
+          </section>
+          <section class="popup__section">
+            <input type="url" class="popup__input popup__input_type_src" name="url" value="" placeholder="Ссылка на картинку" required>
+            <span class="popup__input_type_error" id="url_error"></span>
+          </section>
           <button class="popup__button" type="submit">Создать</button>
         </fieldset>
       </form>
@@ -77,7 +85,8 @@
       </div>
     </li>
   </template>
-  <script src="./scripts/index.js"></script>
+  <script src="./scripts/index.js" defer></script>
+  <script src="./scripts/validate.js" defer></script>
 </body>
 
 </html>
