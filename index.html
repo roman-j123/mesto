@@ -37,10 +37,14 @@
       <form action="post" class="popup__form">
         <fieldset class="popup__fieldset">
           <legend class="popup__header">Редактировать профиль</legend>
-          <input type="text" class="popup__input" name="name" value="" placeholder="Имя пользователя" minlength="2" maxlength="40" required>
-          <span class="popup__input_type_error" id="name_error" style="color: red;"></span>
-          <input type="text" class="popup__input" name="description" value="" placeholder="Описание пользователя" minlength="2" maxlength="200" required>
-          <span class="popup__input_type_error" id="description_error" style="color: red;"></span>
+          <section class="popup__section">
+            <input type="text" class="popup__input popup__input_type_username" name="name" value="" placeholder="Имя пользователя" minlength="2" maxlength="40" required>
+            <span class="popup__input_type_error" id="name_error" style="color: red;"></span>
+          </section>
+          <section class="popup__section">
+            <input type="text" class="popup__input popup__input__type_description" name="description" value="" placeholder="Описание пользователя" minlength="2" maxlength="200" required>
+            <span class="popup__input_type_error" id="description_error" style="color: red;"></span>
+          </section>
           <button class="popup__button" type="submit">Сохранить</button>
         </fieldset>
       </form>

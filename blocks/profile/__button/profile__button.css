@@ -9,6 +9,7 @@
 
 .profile__button:hover {
   opacity: .6;
+  cursor: pointer;
 }
 
 .profile__button:focus {

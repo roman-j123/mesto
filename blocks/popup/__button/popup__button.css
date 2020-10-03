@@ -3,13 +3,14 @@
   height: 50px;
   color: #ffffff;
   background-color: rgba(0,0,0, 1);
-  cursor: pointer;
   transition: ease-in-out .335s;
   border: 1px solid transparent;
   border-radius: 2px;
+  cursor: pointer;
 }
 .popup__button:hover {
   background-color: rgba(0,0,0, .8);
+  cursor: pointer;
 }
 .popup__button:focus {
   outline: none;

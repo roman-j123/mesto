@@ -48,7 +48,7 @@ const setEventListeners = (formElement) => {
   })
 }
 //Функция собра форм
-const enableValidation = () => {
+const enableValidation = (params) => {
   const formList = Array.from(document.querySelectorAll(params.formSelector));
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', evt => {
