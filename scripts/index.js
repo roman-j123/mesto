@@ -132,6 +132,7 @@ openAddPopup.addEventListener('click', () => {
   popupInputCardSrc.value = '';
   inputErrors.forEach((elementError) => {
     elementError.textContent = '';
+    elementError.classList.remove('popup__input_type_error-active');
   })
   buttonElement.setAttribute('disabled', '');
   openPopup(popupAdd);
@@ -146,6 +147,7 @@ openEditPopup.addEventListener('click', () => {
   const inputErrors = popupEdit.querySelectorAll('.popup__input_type_error');
   inputErrors.forEach((elementError) => {
     elementError.textContent = '';
+    elementError.classList.remove('popup__input_type_error-active');
   })
   openPopup(popupEdit);
 });

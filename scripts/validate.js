@@ -16,6 +16,7 @@ const hideInputError = (formElement, inputElement) => {
   errorElement.textContent = "";
   errorElement.classList.remove(params.errorClass);
 }
+
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
