@@ -125,10 +125,10 @@
       <screen x="0" y="23" width="1440" height="834" />
     </state>
     <state x="436" y="66" key="RollbackChangesDialog/0.23.1440.834@0.23.1440.834" timestamp="1600703359312" />
-    <state x="325" y="115" key="SettingsEditor" timestamp="1601715931579">
+    <state x="322" y="23" key="SettingsEditor" timestamp="1601803811342">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
-    <state x="325" y="115" key="SettingsEditor/0.23.1440.834@0.23.1440.834" timestamp="1601715931579" />
+    <state x="322" y="23" key="SettingsEditor/0.23.1440.834@0.23.1440.834" timestamp="1601803811342" />
     <state x="319" y="177" key="Vcs.Push.Dialog.v2" timestamp="1601658262199">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
@@ -137,6 +137,10 @@
       <screen x="0" y="23" width="1440" height="834" />
     </state>
     <state x="352" y="23" width="588" height="834" key="find.popup/0.23.1440.834@0.23.1440.834" timestamp="1600785606801" />
+    <state x="459" y="305" width="604" height="435" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1601803732745">
+      <screen x="0" y="23" width="1440" height="834" />
+    </state>
+    <state x="459" y="305" width="604" height="435" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.23.1440.834@0.23.1440.834" timestamp="1601803732745" />
     <state x="384" y="199" key="run.anything.popup" timestamp="1601486872367">
       <screen x="0" y="23" width="1440" height="834" />
     </state>

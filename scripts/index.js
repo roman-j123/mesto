@@ -1,4 +1,3 @@
-//TODO: Подключить в отдельный файл
 const initialCards = [
   {
     name: 'Архыз',
@@ -120,8 +119,8 @@ const deleteCard = (evt) => {
   card.remove();
 }
 const renderAll = () => {
-  initialCards.forEach((el, index) => {
-    return renderCard(el.name, el.link, index);
+  initialCards.forEach((el) => {
+    renderCard(el.name, el.link)
   })
 }
 //Окно добавления фотографий

@@ -6,12 +6,12 @@ const params =  {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__input_type_error-active'
 }
-const showInputError = (formElement ,inputElement, errorMessage) => {
+const showInputError = (formElement ,inputElement, errorMessage, params) => {
   const errorElement = formElement.querySelector(`#${inputElement.name}_error`);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(params.errorClass);
 }
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, params) => {
   const errorElement = formElement.querySelector(`#${inputElement.name}_error`);
   errorElement.textContent = "";
   errorElement.classList.remove(params.errorClass);
@@ -29,21 +29,21 @@ const toggleButtonState = (inputList, buttonElement) => {
     buttonElement.removeAttribute('disabled')
   }
 }
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, params) => {
   if(!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, inputElement.validationMessage, params);
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, params);
   }
 }
 //Функция сбора форм
-const setEventListeners = (formElement) => {
+const setEventListeners = (formElement, params) => {
   const inputList = Array.from(formElement.querySelectorAll(params.inputSelector));
   const buttonElement = formElement.querySelector(params.submitButtonSelector);
   toggleButtonState(inputList, buttonElement);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      checkInputValidity(formElement, inputElement);
+      checkInputValidity(formElement, inputElement, params);
       toggleButtonState(inputList, buttonElement);
     })
   })
@@ -55,7 +55,7 @@ const enableValidation = (params) => {
     formElement.addEventListener('submit', evt => {
       evt.preventDefault();
     });
-    setEventListeners(formElement);
+    setEventListeners(formElement, params);
     })
 }
 enableValidation(params);
