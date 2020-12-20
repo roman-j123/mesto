@@ -1,10 +1,12 @@
-import * as data from './config.js';
-import { openPopup } from './index.js';
+import * as data from '../utils/config.js';
+//import { openPopup } from '../pages/index.js';
+import Popup from './Popup.js'
 export class Card {
-  constructor(name, link, cardSelector) {
+  constructor(name, link, cardSelector, {handleClick}) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
+    this._handleClick = handleClick;
   }
   _getTemplate() {
     return document
@@ -25,12 +27,13 @@ export class Card {
     this._element.querySelector('.elements__delete').addEventListener('click', ()=> {
       return this._deleteCard();
     })
-    // Лайк карточки (Находим селектор кнопки -> Вешаем событие > Возвращаем метод _likeCard)
+    // Лайк карточки (Находим селектор кнопки -> Вешаем событие -> Возвращаем метод _likeCard)
     this._element.querySelector('.elements__like').addEventListener('click', () => {
       return this._likeCard();
     })
+    // Превью карточки (Находим селектор -> Вешаем событие -> Возвращаем метод _previewCard)
     this._element.querySelector('.elements__image').addEventListener('click', () => {
-      return this._previewCard();
+      this._handleClick(this._name, this._link);
     })
   }
   // Метод удаления карточки (Возвращаем удаление разметки карточки)
@@ -42,12 +45,5 @@ export class Card {
     const _cardElementLike = this._element.querySelector('.elements__like');
     return _cardElementLike.classList.toggle('elements__like_active');
   }
-  // Метод просмотра карточки
-  _previewCard() {
-    data.page.classList.add('page_overflowed');
-    data.zoomingImage.src = this._link;
-    data.zoomingImage.alt = this._name;
-    data.zoomingFigcaption.textContent = this._name;
-    openPopup(data.popupZoom);
-  }
+
 }
