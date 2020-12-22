@@ -1,4 +1,3 @@
-import Popup from './Popup.js';
 import * as data from '../utils/config.js';
 
 export default class UserInfo {

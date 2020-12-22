@@ -1,6 +1,3 @@
-import * as data from '../utils/config.js';
-//import { openPopup } from '../pages/index.js';
-import Popup from './Popup.js'
 export class Card {
   constructor(name, link, cardSelector, {handleClick}) {
     this._name = name;

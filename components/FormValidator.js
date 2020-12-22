@@ -28,6 +28,9 @@ export class FormValidator{
       buttonElement.removeAttribute('disabled')
     }
   }
+  disableButton() {
+    return document.querySelector(this._submitButtonSelector).setAttribute('disabled', 'disabled');
+  }
   _checkInputValidity(inputElement){
     if(!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage);

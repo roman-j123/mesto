@@ -7,114 +7,7 @@ import { FormValidator } from "../components/FormValidator.js";
 import UserInfo from '../components/UserInfo.js';
 import Popup from '../components/Popup.js';
 
-// Функция добовления карточки в конец списка
-/*
-const prepend = (element) => {
-  return data.elementsList.prepend(element);
-}
-*/
-//Добавление данных новой карточки
-/*
-const formSubmitAdd = (evt) => {
-  evt.preventDefault();
-  const card = new Card(data.popupInputCardName.value, data.popupInputCardSrc.value,  '#template-card')
-  const cardItem = card.generateCard();
-  prepend(cardItem);
-  closePopup(data.popupAdd);
-}
-*/
-// Функция открытия окна
-
-/*
-export const openPopup = (popup) => {
-  popup.classList.add('popup_open');
-  document.addEventListener('keydown', closeByEsc);
-  popup.addEventListener('mousedown', closeByClick);
-}
-*/
-
-// Функции закрытия окна
-/*const closePopup = (popup) => {
-  popup.classList.remove('popup_open');
-  document.removeEventListener('keydown', closeByEsc);
-  popup.removeEventListener('mousedown', closeByClick);
-} */
-/*const closeByEsc = (evt) => {
-  const openedPopup = document.querySelector('.popup_open');
-  if(evt.key === 'Escape') {
-    closePopup(openedPopup, evt);
-  }
-}*/
-/*const closeByClick = (evt) => {
-  const openedPopup = document.querySelector('.popup_open');
-  if(evt.currentTarget === evt.target) {
-    closePopup(openedPopup, evt);
-  }
-}*/
-
-// Подгружаем данные в попап
-const popupLoadData = () => {
-  data.inputUserName.value = data.profileName.textContent;
-  data.inputUserDescription.value = data.profileDesc.textContent;
-}
-// Отправляем данные мз попап
-const formSubmitEdit = (evt) => {
-  evt.preventDefault();
-  data.profileName.textContent = data.inputUserName.value;
-  data.profileDesc.textContent = data.inputUserDescription.value;
-  closePopup(data.popupEdit);
-}
-//Окно добавления фотографий
-
-/*data.openAddPopup.addEventListener('click', () => {
-  const buttonElement = data.formAddPhoto.querySelector('.popup__button');
-  const inputErrors = data.popupAdd.querySelectorAll('.popup__input_type_error');
-  data.popupInputCardName.value = '';
-  data.popupInputCardSrc.value = '';
-  inputErrors.forEach((elementError) => {
-    elementError.textContent = '';
-    elementError.classList.remove('popup__input_type_error-active');
-  })
-  buttonElement.setAttribute('disabled', '');
-  openPopup(data.popupAdd);
-});
-*/
-//data.formEditProfile.addEventListener('submit', formSubmitEdit);
-/*data.closeAddButton.addEventListener('click', () => {
-  closePopup(data.popupAdd)
-});
-*/
-
-
-/*
-Окно редактирования личных данных
-
-data.openEditPopup.addEventListener('click', () => {
-  popupLoadData();
-  const inputErrors = data.popupEdit.querySelectorAll('.popup__input_type_error');
-  inputErrors.forEach((elementError) => {
-    elementError.textContent = '';
-    elementError.classList.remove('popup__input_type_error-active');
-  })
-  openPopup(data.popupEdit);
-});
-*/
-
-
-/*
-data.formAddPhoto.addEventListener('submit', formSubmitAdd);
-data.closeEditButton.addEventListener('click', () => {
-  closePopup(data.popupEdit);
-});
-data.closeZoomButton.addEventListener('click', () => {
-  data.page.classList.remove('page_overflowed');
-  closePopup(data.popupZoom);
-  data.zoomingImage.removeAttribute('src');
-  data.zoomingImage.removeAttribute('alt');
-  data.zoomingFigcaption.textContent = '';
-});
-*/
-
+// Отрисовываем список
 const cardList = new Section({
   items: data.initialCards,                                         // Передаем данные карточки
   renderer: (item) => {                                             // Функция отрисовки карточки
@@ -130,10 +23,9 @@ const cardList = new Section({
 }, data.elementsList)                                               // Определяем куда вставляются карточки
 cardList.rendererItems();
 
-
-data.openAddPopup.addEventListener('click', () => {                 // Вешаем слушатель события на открытие окна редактирования
-  openPopupAddForm.open();
-})
+// Окно добавления фотографии
+const formAddPhotoValidator = new FormValidator(data.params, data.params.formAddPhoto);
+formAddPhotoValidator.enableValidation();
 const openPopupAddForm = new PopupWithForm(data.popupAdd, {         // Передаем селектор окна с формой
   handleSubmitForm: (item) => {                                     // В объекте передаем коллбек функции
     const card = new Card(item.name, item.url, '#template-card',    // Создаем новую карточку
@@ -148,24 +40,25 @@ const openPopupAddForm = new PopupWithForm(data.popupAdd, {         // Пере�
   }
 });
 openPopupAddForm.setEventListeners();
+data.openAddPopup.addEventListener('click', () => {                 // Вешаем слушатель события на открытие окна редактирования
+  openPopupAddForm.open();
+})
 
+// Окно редактирования профиля
+const formEditProfileValidator = new FormValidator(data.params, data.params.formEditProfile);
+formEditProfileValidator.enableValidation();
 data.openEditPopup.addEventListener('click', () => {                // Вешаем обработчик события
-  const openUserPopup = new Popup(data.popupEdit);                  // Создаем Popup
+  formEditProfileValidator.disableButton();               
+  const openUserPopup = new Popup(data.popupEdit);   
   openUserPopup.open();                                             // Вызываем метод открытия popup
   const openUserInfo = new UserInfo({userName: data.profileName.textContent, userDescription: data.profileDesc.textContent});
-  openUserInfo.getUserInfo();
-  openUserPopup.setEventListeners();
-  data.formEditProfile.addEventListener('submit', (evt) => {
+  openUserInfo.getUserInfo();                                       // Загружаем в input данные пользователя
+  openUserPopup.setEventListeners();                                // Передаем слушатели событий
+  data.formEditProfile.addEventListener('submit', (evt) => {  
     evt.preventDefault();
     openUserInfo.setUserInfo();
     openUserPopup.close();
   })
 });
 
-
-const formEditProfileValidator = new FormValidator(data.params, data.params.formEditProfile);
-formEditProfileValidator.enableValidation();
-
-const formAddPhotoValidator = new FormValidator(data.params, data.params.formAddPhoto);
-formAddPhotoValidator.enableValidation();
 

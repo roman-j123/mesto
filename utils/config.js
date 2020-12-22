@@ -44,14 +44,14 @@ export const inputUserName = popupEdit.querySelector('.popup__input_type_usernam
 export const inputUserDescription = popupEdit.querySelector('.popup__input__type_description');
 export const closeEditButton = popupEdit.querySelector('.popup__close'); // Находим кнопку для закрытия popup
 //Окно добавления фотографии
-export const popupAdd = document.querySelector('.popup_type_photo');
+export const popupAdd = document.querySelector('.popup_type_photo'); 
 export const openAddPopup = document.querySelector('.profile__button_type_add');
 export const closeAddButton = popupAdd.querySelector('.popup__close');
 //Инпуты окна добавления фотографии
 export const popupInputCardName = document.querySelector('.popup__input_type_name');
 export const popupInputCardSrc = document.querySelector('.popup__input_type_src');
 //Окно просмотра фотографии
-export const popupZoom = document.querySelector('.popup_type_zoom');
+export const popupZoom = document.querySelector('.popup_type_zoom'); 
 export const zoomingImage = popupZoom.querySelector('.popup__image');
 export const zoomingFigcaption = popupZoom.querySelector('.popup__figcaption');
 export const closeZoomButton = popupZoom.querySelector('.popup__close');
