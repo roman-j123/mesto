@@ -1,3 +1,5 @@
+import './index.css';
+
 import * as data from '../utils/config.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
