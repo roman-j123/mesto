@@ -30,9 +30,9 @@ const formAddPhotoValidator = new FormValidator(data.params, data.params.formAdd
 formAddPhotoValidator.enableValidation();
 const openPopupAddForm = new PopupWithForm(data.popupAdd, {         // Передаем селектор окна с формой
   handleSubmitForm: (item) => {                                     // В объекте передаем коллбек функции
-    const card = new Card(item.name, item.url, '#template-card',    // Создаем новую карточку
+    const card = new Card(item.place, item.url, '#template-card',    // Создаем новую карточку
     {handleClick: () => {                                           // Генерируем новую карточку
-      openPopupWithImage.open(item.name, item.url);                 // Передаем метод открытия popup
+      openPopupWithImage.open(item.place, item.url);                 // Передаем метод открытия popup
       openPopupWithImage.setEventListeners();                       // Передаём слушатели событий
     }});
     const cardItem = card.generateCard();                           // Генерируем карточку

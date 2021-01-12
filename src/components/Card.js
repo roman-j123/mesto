@@ -15,26 +15,26 @@ export class Card {
       .querySelector('.elements__item')
       .cloneNode(true);
   }
-  _setEventListeners() {
-    // Удаление карточки (Находим селектор кнопки -> Вешаем событие -> Возвращаем метод _deleteCard)
-    this._element.querySelector('.elements__delete').addEventListener('click', ()=> {
-      return this._deleteCard();
-    })
-    // Лайк карточки (Находим селектор кнопки -> Вешаем событие -> Возвращаем метод _likeCard)
-    this._element.querySelector('.elements__like').addEventListener('click', () => {
-      return this._likeCard();
-    })
-    // Превью карточки (Находим селектор -> Вешаем событие -> Возвращаем метод _previewCard)
-    this._element.querySelector('.elements__image').addEventListener('click', () => {
-      this._handleClick(this._name, this._link);
-    })
-  }
   generateCard() {
     this._setEventListeners();
     this._element.querySelector('.elements__header').textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     return this._element;
+  }
+  _setEventListeners() {
+    // Удаление карточки (Находим селектор кнопки -> Вешаем событие -> Возвращаем метод _deleteCard)
+    this._element.querySelector('.elements__delete').addEventListener('click', ()=> {
+      return this._deleteCard();
+    })
+    // Лайк карточки (Находим селектор кнопки -> Вешаем событие -> Возвращаем метод _likeCard)
+    this._cardElementLike.addEventListener('click', () => {
+      return this._likeCard();
+    })
+    // Превью карточки (Находим селектор -> Вешаем событие -> Возвращаем метод _previewCard)
+    this._element.querySelector('.elements__image').addEventListener('click', () => {
+      this._handleClick(this._name, this._link);
+    })
   }
   // Метод удаления карточки (Возвращаем удаление разметки карточки)
   _deleteCard() {

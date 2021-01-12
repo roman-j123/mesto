@@ -3,6 +3,7 @@ export default class PopupWithForm extends Popup {
   constructor(popupSelector,{handleSubmitForm}) {
     super(popupSelector);
     this._handleSubmitForm = handleSubmitForm;
+    this._popupForm = this._popupSelector.querySelector('.popup__form');
   }
   _getInputValues() {
     // Забираем все элементы полей
@@ -16,14 +17,14 @@ export default class PopupWithForm extends Popup {
   }
   setEventListeners() {
     super.setEventListeners();
-    this._popupSelector.querySelector('.popup__form').addEventListener('submit', evt => {
+    this._popupForm.addEventListener('submit', evt => {
       evt.preventDefault();
       this._handleSubmitForm(this._getInputValues());
     })
   }
   close() {
     super.close();
-    this._popupSelector.querySelector('.popup__form').reset();
+    this._popupForm.reset();
     this._popupSelector.querySelector('.popup__button').setAttribute('disabled', '');
   }
 }
