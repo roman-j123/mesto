@@ -13,7 +13,7 @@ import Popup from '../components/Popup.js';
 const cardList = new Section({
   items: data.initialCards,                                         // Передаем данные карточки
   renderer: (item) => {                                             // Функция отрисовки карточки
-    const openPopupWithImage = new PopupWithImage(data.popupZoom);  // Передаем класс зума карточки
+    const openPopupWithImage = new PopupWithImage(data.params.popupZoom);  // Передаем класс зума карточки
     const card = new Card(item.name, item.url, '#template-card',    // Создаем карточку (Название, ссылка, шаблон)
     {handleClick: () => {                                           // Создаем объект с методом открытия и событиями
       openPopupWithImage.open(item.name, item.url);                 // Передаем метод открытия popup
@@ -28,7 +28,7 @@ cardList.rendererItems();
 // Окно добавления фотографии
 const formAddPhotoValidator = new FormValidator(data.params, data.params.formAddPhoto);
 formAddPhotoValidator.enableValidation();
-const openPopupAddForm = new PopupWithForm(data.popupAdd, {         // Передаем селектор окна с формой
+const openPopupAddForm = new PopupWithForm(data.params.formAddPhoto, {         // Передаем селектор окна с формой
   handleSubmitForm: (item) => {                                     // В объекте передаем коллбек функции
     const card = new Card(item.place, item.url, '#template-card',    // Создаем новую карточку
     {handleClick: () => {                                           // Генерируем новую карточку
@@ -37,7 +37,7 @@ const openPopupAddForm = new PopupWithForm(data.popupAdd, {         // Пере�
     }});
     const cardItem = card.generateCard();                           // Генерируем карточку
     cardList.addItem(cardItem);                                     // Добавляемготовую карточку
-    const openPopupWithImage = new PopupWithImage(data.popupZoom);  // Передаем класс зума карточки
+    const openPopupWithImage = new PopupWithImage(data.params.popupZoom);  // Передаем класс зума карточки
     openPopupAddForm.close();                                       // Передаем метод закрытия окна
   }
 });
@@ -51,7 +51,7 @@ const formEditProfileValidator = new FormValidator(data.params, data.params.form
 formEditProfileValidator.enableValidation();
 data.openEditPopup.addEventListener('click', () => {                // Вешаем обработчик события
   formEditProfileValidator.disableButton();               
-  const openUserPopup = new Popup(data.popupEdit);   
+  const openUserPopup = new Popup(data.params.formEditProfile);   
   openUserPopup.open();                                             // Вызываем метод открытия popup
   const openUserInfo = new UserInfo({userName: data.profileName.textContent, userDescription: data.profileDesc.textContent});
   openUserInfo.getUserInfo();                                       // Загружаем в input данные пользователя

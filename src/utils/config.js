@@ -31,7 +31,8 @@ export const params =  {
   inputErrorClass: '.popup__input-error',
   errorClass: 'popup__input-error-active',
   formEditProfile: '.popup_type_edit',
-  formAddPhoto: '.popup_type_photo'
+  formAddPhoto: '.popup_type_photo',
+  popupZoom: '.popup_type_zoom',
 }
 export const page = document.querySelector('.page');
 export const elementsList = document.querySelector('.elements__list'); // Находим блок списка карточек
@@ -51,10 +52,9 @@ export const closeAddButton = popupAdd.querySelector('.popup__close');
 export const popupInputCardName = document.querySelector('.popup__input_type_name');
 export const popupInputCardSrc = document.querySelector('.popup__input_type_src');
 //Окно просмотра фотографии
-export const popupZoom = document.querySelector('.popup_type_zoom'); 
-export const zoomingImage = popupZoom.querySelector('.popup__image');
-export const zoomingFigcaption = popupZoom.querySelector('.popup__figcaption');
-export const closeZoomButton = popupZoom.querySelector('.popup__close');
+export const zoomingImage = document.querySelector(params.popupZoom).querySelector('.popup__image');
+export const zoomingFigcaption = document.querySelector(params.popupZoom).querySelector('.popup__figcaption');
+export const closeZoomButton = document.querySelector(params.popupZoom).querySelector('.popup__close');
 
 export const formEditProfile = popupEdit.querySelector('.popup__form'); // Находим форму в DOM
 export const formAddPhoto = popupAdd.querySelector('.popup__form');
