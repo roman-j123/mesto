@@ -28,8 +28,8 @@ export const params =  {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
-  inputErrorClass: '.popup__input_type_error',
-  errorClass: 'popup__input_type_error-active',
+  inputErrorClass: '.popup__input-error',
+  errorClass: 'popup__input-error-active',
   formEditProfile: '.popup_type_edit',
   formAddPhoto: '.popup_type_photo'
 }

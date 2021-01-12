@@ -1,4 +1,4 @@
-.popup__input_type_error {
+.popup__input-error {
   color: red;
   font-size: 12px;
   position: absolute;
@@ -6,6 +6,6 @@
   left: 0;
   opacity: 0;
 }
-.popup__input_type_error-active {
+.popup__input-error-active {
   opacity: 1;
 }
