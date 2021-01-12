@@ -41,7 +41,7 @@ export const openEditPopup = document.querySelector('.profile__button_type_edit'
 export const profileName = document.querySelector('.profile__name'); // Находим блок с именем
 export const profileDesc = document.querySelector('.profile__description'); // Находим блок с описанием
 export const inputUserName = popupEdit.querySelector('.popup__input_type_username');
-export const inputUserDescription = popupEdit.querySelector('.popup__input__type_description');
+export const inputUserDescription = popupEdit.querySelector('.popup__input_type_description');
 export const closeEditButton = popupEdit.querySelector('.popup__close'); // Находим кнопку для закрытия popup
 //Окно добавления фотографии
 export const popupAdd = document.querySelector('.popup_type_photo'); 
