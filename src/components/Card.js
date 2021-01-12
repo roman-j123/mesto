@@ -4,6 +4,9 @@ export class Card {
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleClick = handleClick;
+    this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.elements__image');
+    this._cardElementLike = this._element.querySelector('.elements__like');
   }
   _getTemplate() {
     return document
@@ -27,11 +30,10 @@ export class Card {
     })
   }
   generateCard() {
-    this._element = this._getTemplate();
     this._setEventListeners();
     this._element.querySelector('.elements__header').textContent = this._name;
-    this._element.querySelector('.elements__image').src = this._link;
-    this._element.querySelector('.elements__image').alt = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     return this._element;
   }
   // Метод удаления карточки (Возвращаем удаление разметки карточки)
@@ -40,8 +42,7 @@ export class Card {
   }
   // Метод удаления карточки (Запишем нужный селектор в _cardElementLike -> Добавим класс like)
   _likeCard() {
-    const _cardElementLike = this._element.querySelector('.elements__like');
-    return _cardElementLike.classList.toggle('elements__like_active');
+    return this._cardElementLike.classList.toggle('elements__like_active');
   }
 
 }
