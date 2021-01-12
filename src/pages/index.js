@@ -22,7 +22,7 @@ const cardList = new Section({
     const cardItem = card.generateCard();                           // Генерируем карточку
     cardList.addItem(cardItem);                                     // Добавлякм готовую карточку
   }
-}, data.elementsList)                                               // Определяем куда вставляются карточки
+}, data.params.elementsList)                                               // Определяем куда вставляются карточки
 cardList.rendererItems();
 
 // Окно добавления фотографии

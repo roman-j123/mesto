@@ -25,6 +25,7 @@ export const initialCards = [
   }
 ];
 export const params =  {
+  elementsList: '.elements__list',
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
@@ -35,7 +36,6 @@ export const params =  {
   popupZoom: '.popup_type_zoom',
 }
 export const page = document.querySelector('.page');
-export const elementsList = document.querySelector('.elements__list'); // Находим блок списка карточек
 //Окно редактирования профиля
 export const popupEdit = document.querySelector('.popup_type_edit');
 export const openEditPopup = document.querySelector('.profile__button_type_edit'); // Находим кнопку для открытия popup
