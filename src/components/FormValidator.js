@@ -1,5 +1,3 @@
-import { params } from "../utils/config";
-
 export class FormValidator{
   constructor (params, formSelector) {
     this._formSelector = formSelector;
