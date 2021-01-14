@@ -9,15 +9,15 @@ import { FormValidator } from "../components/FormValidator.js";
 import UserInfo from '../components/UserInfo.js';
 
 //Создаем экземпляры карточек
-const openPopupWithImage = new PopupWithImage(data.params.popupZoom, data.params.zoomingImage, data.params.zoomingFigcaption);
-openPopupWithImage.setEventListeners();
+const popupWithImage = new PopupWithImage(data.params.popupZoom, data.params.zoomingImage, data.params.zoomingFigcaption);
+popupWithImage.setEventListeners();
 
-const openUserInfo = new UserInfo({userName: data.profileName, userDescription: data.profileDesc});
+const userInfo = new UserInfo({userName: data.profileName, userDescription: data.profileDesc});
 
 const createCard = (item) => {
   const card = new Card(item.place, item.url, '#template-card', 
   {handleClick: () => {
-    openPopupWithImage.open(item.place, item.url);
+    popupWithImage.open(item.place, item.url);
   }});
   const cardItem = card.generateCard();
   return cardItem
@@ -36,15 +36,15 @@ cardList.rendererItems();
 // Окно добавления фотографии
 const formAddPhotoValidator = new FormValidator(data.params, data.params.formAddPhoto);
 formAddPhotoValidator.enableValidation();
-const openPopupAddForm = new PopupWithForm(data.params.formAddPhoto, {
+const popupAddForm = new PopupWithForm(data.params.formAddPhoto, {
   handleSubmitForm: (item) => {
     cardList.addItem(createCard(item));
-    openPopupAddForm.close();
+    popupAddForm.close();
   }
 });
-openPopupAddForm.setEventListeners();
+popupAddForm.setEventListeners();
 data.openAddPopup.addEventListener('click', () => {
-  openPopupAddForm.open();
+  popupAddForm.open();
 })
 
 // Окно редактирования профиля
@@ -54,16 +54,16 @@ formEditProfileValidator.enableValidation();
 data.openEditPopup.addEventListener('click', () => {                
   formEditProfileValidator.disableButton();               
   
-  const openUserPopup = new PopupWithForm(data.params.formEditProfile, {
+  const userPopup = new PopupWithForm(data.params.formEditProfile, {
     handleSubmitForm: (item) => {
-      openUserInfo.setUserInfo(item);
-      openUserPopup.close();
+      userInfo.setUserInfo(item);
+      userPopup.close();
     }});
-  openUserPopup.open();
-  const userData = openUserInfo.getUserInfo();
+  userPopup.open();
+  const userData = userInfo.getUserInfo();
   data.inputUserName.value = userData.name;
   data.inputUserDescription.value = userData.description;                                           
-  openUserPopup.setEventListeners();                                
+  userPopup.setEventListeners();                                
 });
 
 
