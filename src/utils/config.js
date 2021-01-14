@@ -28,6 +28,7 @@ export const params =  {
   elementsList: '.elements__list',
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
+  inputInvaildSelector: 'popup__input_type_invaild',
   submitButtonSelector: '.popup__button',
   inputErrorClass: '.popup__input-error',
   errorClass: 'popup__input-error-active',
@@ -43,7 +44,7 @@ export const popupEdit = document.querySelector('.popup_type_edit');
 export const openEditPopup = document.querySelector('.profile__button_type_edit'); // Находим кнопку для открытия popup
 export const profileName = document.querySelector('.profile__name'); // Находим блок с именем
 export const profileDesc = document.querySelector('.profile__description'); // Находим блок с описанием
-export const inputUserName = popupEdit.querySelector('.popup__input_type_username');
+export const inputUserName = popupEdit.querySelector('.popup__input_type_name');
 export const inputUserDescription = popupEdit.querySelector('.popup__input_type_description');
 export const closeEditButton = popupEdit.querySelector('.popup__close'); // Находим кнопку для закрытия popup
 //Окно добавления фотографии
