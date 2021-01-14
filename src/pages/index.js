@@ -36,14 +36,16 @@ cardList.rendererItems();
 // Окно добавления фотографии
 const formAddPhotoValidator = new FormValidator(data.params, data.params.formAddPhoto);
 formAddPhotoValidator.enableValidation();
+
 const popupAddForm = new PopupWithForm(data.params.formAddPhoto, {
   handleSubmitForm: (item) => {
     cardList.addItem(createCard(item));
     popupAddForm.close();
-  }
-});
+  }});
 popupAddForm.setEventListeners();
 data.openAddPopup.addEventListener('click', () => {
+  formAddPhotoValidator.disableButton();
+  formAddPhotoValidator.clearErrors();
   popupAddForm.open();
 })
 
@@ -55,11 +57,11 @@ const userPopupForm = new PopupWithForm(data.params.formEditProfile, {
   handleSubmitForm: (item) => {
     userInfo.setUserInfo(item);
     userPopupForm.close();                
-    console.log(item);
 }});              
 userPopupForm.setEventListeners();  
 data.openEditPopup.addEventListener('click', () => {                
   formEditProfileValidator.disableButton();
+  formEditProfileValidator.clearErrors();
   userPopupForm.open();
   const userData = userInfo.getUserInfo();
   data.inputUserName.value = userData.name;

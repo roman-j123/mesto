@@ -1,3 +1,5 @@
+import { params } from "../utils/config";
+
 export class FormValidator{
   constructor (params, formSelector) {
     this._formSelector = formSelector;
@@ -5,16 +7,17 @@ export class FormValidator{
     this._inputSelector = params.inputSelector;
     this._submitButtonSelector = params.submitButtonSelector;
     this._errorClass = params.errorClass;
+
   }
   _showInputError(inputElement, errorMessage) {
-    const errorElement = this._formElement.querySelector(`#${inputElement.name}_error`);
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add(this._errorClass);
+    this._errorElement = this._formElement.querySelector(`#${inputElement.name}_error`);
+    this._errorElement.textContent = errorMessage;
+    this._errorElement.classList.add(this._errorClass);
   }
   _hideInputError(inputElement){
-    const errorElement = this._formElement.querySelector(`#${inputElement.name}_error`);
-    errorElement.textContent = "";
-    errorElement.classList.remove(this._errorClass);
+    this._errorElement = this._formElement.querySelector(`#${inputElement.name}_error`);
+    this._errorElement.textContent = "";
+    this._errorElement.classList.remove(this._errorClass);
   }
   _hasInvalidInput(inputList){
     return inputList.some((inputElement) => {
@@ -30,6 +33,11 @@ export class FormValidator{
   }
   disableButton() {
     return document.querySelector(this._submitButtonSelector).setAttribute('disabled', 'disabled');
+  }
+  clearErrors() {
+    this._formElement.querySelectorAll(params.inputErrorClass).forEach((element) => {
+      element.textContent = "";
+    });
   }
   _checkInputValidity(inputElement){
     if(!inputElement.validity.valid) {
