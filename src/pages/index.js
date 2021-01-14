@@ -7,60 +7,63 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from "../components/FormValidator.js";
 import UserInfo from '../components/UserInfo.js';
-import Popup from '../components/Popup.js';
+
+//Создаем экземпляры карточек
+const openPopupWithImage = new PopupWithImage(data.params.popupZoom, data.params.zoomingImage, data.params.zoomingFigcaption);
+openPopupWithImage.setEventListeners();
+
+const openUserInfo = new UserInfo({userName: data.profileName, userDescription: data.profileDesc});
+
+const createCard = (item) => {
+  const card = new Card(item.place, item.url, '#template-card', 
+  {handleClick: () => {
+    openPopupWithImage.open(item.place, item.url);
+  }});
+  const cardItem = card.generateCard();
+  return cardItem
+}
 
 // Отрисовываем список
 const cardList = new Section({
-  items: data.initialCards,                                         // Передаем данные карточки
-  renderer: (item) => {                                             // Функция отрисовки карточки
-    const openPopupWithImage = new PopupWithImage(data.params.popupZoom);  // Передаем класс зума карточки
-    const card = new Card(item.name, item.url, '#template-card',    // Создаем карточку (Название, ссылка, шаблон)
-    {handleClick: () => {                                           // Создаем объект с методом открытия и событиями
-      openPopupWithImage.open(item.name, item.url);                 // Передаем метод открытия popup
-      openPopupWithImage.setEventListeners();                       // Передаём слушатели событий
-    }});
-    const cardItem = card.generateCard();                           // Генерируем карточку
-    cardList.addItem(cardItem);                                     // Добавлякм готовую карточку
+  items: data.initialCards,
+  renderer: (item) => {
+  // Передаем класс зума карточки
+    cardList.addItem(createCard(item));
   }
-}, data.params.elementsList)                                               // Определяем куда вставляются карточки
+}, data.params.elementsList)
 cardList.rendererItems();
 
 // Окно добавления фотографии
 const formAddPhotoValidator = new FormValidator(data.params, data.params.formAddPhoto);
 formAddPhotoValidator.enableValidation();
-const openPopupAddForm = new PopupWithForm(data.params.formAddPhoto, {         // Передаем селектор окна с формой
-  handleSubmitForm: (item) => {                                     // В объекте передаем коллбек функции
-    const card = new Card(item.place, item.url, '#template-card',    // Создаем новую карточку
-    {handleClick: () => {                                           // Генерируем новую карточку
-      openPopupWithImage.open(item.place, item.url);                 // Передаем метод открытия popup
-      openPopupWithImage.setEventListeners();                       // Передаём слушатели событий
-    }});
-    const cardItem = card.generateCard();                           // Генерируем карточку
-    cardList.addItem(cardItem);                                     // Добавляемготовую карточку
-    const openPopupWithImage = new PopupWithImage(data.params.popupZoom);  // Передаем класс зума карточки
-    openPopupAddForm.close();                                       // Передаем метод закрытия окна
+const openPopupAddForm = new PopupWithForm(data.params.formAddPhoto, {
+  handleSubmitForm: (item) => {
+    cardList.addItem(createCard(item));
+    openPopupAddForm.close();
   }
 });
 openPopupAddForm.setEventListeners();
-data.openAddPopup.addEventListener('click', () => {                 // Вешаем слушатель события на открытие окна редактирования
+data.openAddPopup.addEventListener('click', () => {
   openPopupAddForm.open();
 })
 
 // Окно редактирования профиля
 const formEditProfileValidator = new FormValidator(data.params, data.params.formEditProfile);
 formEditProfileValidator.enableValidation();
-data.openEditPopup.addEventListener('click', () => {                // Вешаем обработчик события
+
+data.openEditPopup.addEventListener('click', () => {                
   formEditProfileValidator.disableButton();               
-  const openUserPopup = new Popup(data.params.formEditProfile);   
-  openUserPopup.open();                                             // Вызываем метод открытия popup
-  const openUserInfo = new UserInfo({userName: data.profileName.textContent, userDescription: data.profileDesc.textContent});
-  openUserInfo.getUserInfo();                                       // Загружаем в input данные пользователя
-  openUserPopup.setEventListeners();                                // Передаем слушатели событий
-  data.formEditProfile.addEventListener('submit', (evt) => {  
-    evt.preventDefault();
-    openUserInfo.setUserInfo();
-    openUserPopup.close();
-  })
+  
+  const openUserPopup = new PopupWithForm(data.params.formEditProfile, {
+    handleSubmitForm: (item) => {
+      openUserInfo.setUserInfo(item);
+      openUserPopup.close();
+    }});
+  openUserPopup.open();
+  const userData = openUserInfo.getUserInfo();
+  data.inputUserName.value = userData.name;
+  data.inputUserDescription.value = userData.description;                                           
+  openUserPopup.setEventListeners();                                
 });
 
 

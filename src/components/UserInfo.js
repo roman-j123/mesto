@@ -1,4 +1,3 @@
-import * as data from '../utils/config.js';
 
 export default class UserInfo {
   constructor({userName, userDescription}) {
@@ -6,11 +5,13 @@ export default class UserInfo {
     this._userDescription = userDescription;
   }
   getUserInfo() {
-    data.inputUserName.value = this._userName;
-    data.inputUserDescription.value = this._userDescription;
+    return {
+      name: this._userName.textContent,
+      description: this._userDescription.textContent,
+    }
   }
-  setUserInfo() {
-    data.profileName.textContent = data.inputUserName.value;
-    data.profileDesc.textContent = data.inputUserDescription.value;
+  setUserInfo({name, description}) {
+    this._userName.textContent = name;
+    this._userDescription.textContent = description;
   }
 }

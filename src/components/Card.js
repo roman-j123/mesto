@@ -32,8 +32,8 @@ export class Card {
       return this._likeCard();
     })
     // Превью карточки (Находим селектор -> Вешаем событие -> Возвращаем метод _previewCard)
-    this._element.querySelector('.elements__image').addEventListener('click', () => {
-      this._handleClick(this._name, this._link);
+    this._cardImage.addEventListener('click', () => {
+      return this._handleClick(this._name, this._link);
     })
   }
   // Метод удаления карточки (Возвращаем удаление разметки карточки)

@@ -1,26 +1,26 @@
 export const initialCards = [
   {
-    name: 'Архыз',
+    place: 'Архыз',
     url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
-    name: 'Челябинская область',
+    place: 'Челябинская область',
     url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
-    name: 'Иваново',
+    place: 'Иваново',
     url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
-    name: 'Камчатка',
+    place: 'Камчатка',
     url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
-    name: 'Холмогорский район',
+    place: 'Холмогорский район',
     url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
-    name: 'Байкал',
+    place: 'Байкал',
     url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
@@ -34,6 +34,8 @@ export const params =  {
   formEditProfile: '.popup_type_edit',
   formAddPhoto: '.popup_type_photo',
   popupZoom: '.popup_type_zoom',
+  zoomingImage: '.popup__image',
+  zoomingFigcaption: '.popup__figcaption',
 }
 export const page = document.querySelector('.page');
 //Окно редактирования профиля
@@ -52,7 +54,6 @@ export const closeAddButton = popupAdd.querySelector('.popup__close');
 export const popupInputCardName = document.querySelector('.popup__input_type_name');
 export const popupInputCardSrc = document.querySelector('.popup__input_type_src');
 //Окно просмотра фотографии
-export const zoomingImage = document.querySelector(params.popupZoom).querySelector('.popup__image');
 export const zoomingFigcaption = document.querySelector(params.popupZoom).querySelector('.popup__figcaption');
 export const closeZoomButton = document.querySelector(params.popupZoom).querySelector('.popup__close');
 
