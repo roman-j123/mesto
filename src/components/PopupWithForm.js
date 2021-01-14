@@ -4,10 +4,9 @@ export default class PopupWithForm extends Popup {
     super(popupSelector);
     this._handleSubmitForm = handleSubmitForm;
     this._popupForm = this._popup.querySelector('.popup__form');
-  }
-  _getInputValues() {
-    // Забираем все элементы полей
     this._inputList = this._popupForm.querySelectorAll('.popup__input');
+  }
+  _getInputValues() {    
     // Создаем пустой объект
     this._formValues = {};
     this._inputList.forEach(input => {
@@ -24,6 +23,7 @@ export default class PopupWithForm extends Popup {
   }
   close() {
     super.close();
+    this._popupForm.reset();
     this._popup.querySelector('.popup__button').setAttribute('disabled', '');
   }
 }

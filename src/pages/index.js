@@ -50,20 +50,19 @@ data.openAddPopup.addEventListener('click', () => {
 // Окно редактирования профиля
 const formEditProfileValidator = new FormValidator(data.params, data.params.formEditProfile);
 formEditProfileValidator.enableValidation();
-
+        
+const userPopupForm = new PopupWithForm(data.params.formEditProfile, {
+  handleSubmitForm: (item) => {
+    userInfo.setUserInfo(item);
+    userPopupForm.close();                
+    console.log(item);
+}});              
+userPopupForm.setEventListeners();  
 data.openEditPopup.addEventListener('click', () => {                
-  formEditProfileValidator.disableButton();               
-  
-  const userPopup = new PopupWithForm(data.params.formEditProfile, {
-    handleSubmitForm: (item) => {
-      userInfo.setUserInfo(item);
-      userPopup.close();
-    }});
-  userPopup.open();
+  formEditProfileValidator.disableButton();
+  userPopupForm.open();
   const userData = userInfo.getUserInfo();
   data.inputUserName.value = userData.name;
-  data.inputUserDescription.value = userData.description;                                           
-  userPopup.setEventListeners();                                
-});
-
+  data.inputUserDescription.value = userData.description;
+}); 
 
