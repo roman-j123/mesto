@@ -38,7 +38,7 @@ export class FormValidator{
     }
   }
   disableButton() {
-    return document.querySelector(this._submitButtonSelector).setAttribute('disabled', 'disabled');
+    document.querySelector(this._submitButtonSelector).setAttribute('disabled', 'disabled');
   }
   clearErrors() {
     this._formElement.querySelectorAll(this._inputSelector).forEach((element) => {
