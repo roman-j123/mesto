@@ -7,8 +7,15 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from "../components/FormValidator.js";
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 
-//Создаем экземпляры карточек
+const api = new Api({
+  address: 'https://mesto.nomoreparties.co', 
+  token: 'd8d1cc1a-fc60-4366-9dd1-cd8eb0d5a40e', 
+  groupId: 'cohort-19'
+});
+
+  //Создаем экземпляры карточек
 const popupWithImage = new PopupWithImage(data.params.popupZoom, data.params.zoomingImage, data.params.zoomingFigcaption);
 popupWithImage.setEventListeners();
 
@@ -24,7 +31,7 @@ const createCard = (item) => {
 }
 
 // Отрисовываем список
-const cardList = new Section({
+/*const cardList = new Section({
   items: data.initialCards,
   renderer: (item) => {
   // Передаем класс зума карточки
@@ -32,7 +39,16 @@ const cardList = new Section({
   }
 }, data.params.elementsList)
 cardList.rendererItems();
-
+*/
+api.getCards().then(result => {
+  const cardList = new Section({
+    renderer: (item) => {
+      cardList.addItem(createCard(item))
+      }
+    }, data.params.elementsList);
+    cardList.rendererItems(result);
+    console.log(result);
+  });
 // Окно добавления фотографии
 const formAddPhotoValidator = new FormValidator(data.params, data.params.formAddPhoto);
 formAddPhotoValidator.enableValidation();
@@ -67,4 +83,3 @@ data.openEditPopup.addEventListener('click', () => {
   data.inputUserName.value = userData.name;
   data.inputUserDescription.value = userData.description;
 }); 
-
