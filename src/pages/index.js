@@ -20,16 +20,6 @@ const popupWithImage = new PopupWithImage(data.params.popupZoom, data.params.zoo
 popupWithImage.setEventListeners();
 
 const userInfo = new UserInfo({userName: data.profileName, userDescription: data.profileDesc});
-
-const createCard = (item) => {
-  const card = new Card(item.place, item.url, '#template-card', 
-  {handleClick: () => {
-    popupWithImage.open(item.place, item.url);
-  }});
-  const cardItem = card.generateCard();
-  return cardItem
-}
-
 // Отрисовываем список
 /*const cardList = new Section({
   items: data.initialCards,
@@ -40,14 +30,25 @@ const createCard = (item) => {
 }, data.params.elementsList)
 cardList.rendererItems();
 */
+
 api.getCards().then(result => {
+  const createCard = (result) => {
+    const card = new Card(result.name, result.link, '#template-card', 
+    {handleClick: () => {
+      popupWithImage.open(result.name, result.link);
+    }});
+    const cardItem = card.generateCard();
+    return cardItem
+  }
+  
   const cardList = new Section({
     renderer: (item) => {
       cardList.addItem(createCard(item))
       }
     }, data.params.elementsList);
     cardList.rendererItems(result);
-    console.log(result);
+  }).catch(err => {
+    console.log(err);
   });
 // Окно добавления фотографии
 const formAddPhotoValidator = new FormValidator(data.params, data.params.formAddPhoto);
