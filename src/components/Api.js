@@ -6,9 +6,28 @@ export default class Api {
     }
     getCards() {
         return fetch(`${this._address}/v1/${this._group}/cards`, {
-        headers: {
-            authorization: this._token,
-        }
+            method: 'GET',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            }
+        }).then(res => {
+            if(res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Error: ${res.status}`);
+        })
+    }
+    addNewCard(name, link) {
+        return fetch(`${this._address}/v1/${this._group}/cards`, {
+            method: 'POST',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            }, body: JSON.stringify({
+                name: name,
+                link: link
+            })
         }).then(res => {
             if(res.ok) {
                 return res.json();

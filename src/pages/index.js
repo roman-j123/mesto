@@ -20,46 +20,39 @@ const popupWithImage = new PopupWithImage(data.params.popupZoom, data.params.zoo
 popupWithImage.setEventListeners();
 
 const userInfo = new UserInfo({userName: data.profileName, userDescription: data.profileDesc});
-// Отрисовываем список
-/*const cardList = new Section({
-  items: data.initialCards,
-  renderer: (item) => {
-  // Передаем класс зума карточки
-    cardList.addItem(createCard(item));
-  }
-}, data.params.elementsList)
-cardList.rendererItems();
-*/
+const createCard = (result) => {
+  const card = new Card(result.name, result.link, '#template-card', 
+  {handleClick: () => {
+    popupWithImage.open(result.name, result.link);
+  }});
+  const cardItem = card.generateCard();
+  return cardItem
+}
 
 api.getCards().then(result => {
-  const createCard = (result) => {
-    const card = new Card(result.name, result.link, '#template-card', 
-    {handleClick: () => {
-      popupWithImage.open(result.name, result.link);
-    }});
-    const cardItem = card.generateCard();
-    return cardItem
-  }
-  
-  const cardList = new Section({
-    renderer: (item) => {
-      cardList.addItem(createCard(item))
-      }
-    }, data.params.elementsList);
     cardList.rendererItems(result);
   }).catch(err => {
     console.log(err);
   });
-// Окно добавления фотографии
+  const cardList = new Section({
+    renderer: (item) => {
+      cardList.addItem(createCard(item));
+      }
+    }, data.params.elementsList);
+
+  // Окно добавления фотографии
 const formAddPhotoValidator = new FormValidator(data.params, data.params.formAddPhoto);
 formAddPhotoValidator.enableValidation();
 
 const popupAddForm = new PopupWithForm(data.params.formAddPhoto, {
   handleSubmitForm: (item) => {
-    cardList.addItem(createCard(item));
-    popupAddForm.close();
+    api.addNewCard(item.place, item.url).then(result => {
+      cardList.addItem(createCard(result));
+      popupAddForm.close();
+    })
   }});
 popupAddForm.setEventListeners();
+
 data.openAddPopup.addEventListener('click', () => {
   formAddPhotoValidator.disableButton();
   formAddPhotoValidator.clearErrors();
