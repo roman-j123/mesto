@@ -14,7 +14,6 @@ const api = new Api({
   token: 'd8d1cc1a-fc60-4366-9dd1-cd8eb0d5a40e', 
   groupId: 'cohort-19'
 });
-
   //Создаем экземпляры карточек
 const popupWithImage = new PopupWithImage(data.params.popupZoom, data.params.zoomingImage, data.params.zoomingFigcaption);
 popupWithImage.setEventListeners();
@@ -28,17 +27,19 @@ const createCard = (result) => {
   const cardItem = card.generateCard();
   return cardItem
 }
+Promise.all([
+  api.getUser(),
+  api.getCards()
+]).then(res => {
+  userInfo.setUserInfo(res[0]);
+  cardList.rendererItems(res[1]);
+})
 
-api.getCards().then(result => {
-    cardList.rendererItems(result);
-  }).catch(err => {
-    console.log(err);
-  });
-  const cardList = new Section({
-    renderer: (item) => {
-      cardList.addItem(createCard(item));
-      }
-    }, data.params.elementsList);
+const cardList = new Section({
+  renderer: (item) => {
+    cardList.addItem(createCard(item));
+    }
+}, data.params.elementsList);
 
   // Окно добавления фотографии
 const formAddPhotoValidator = new FormValidator(data.params, data.params.formAddPhoto);
@@ -50,6 +51,7 @@ const popupAddForm = new PopupWithForm(data.params.formAddPhoto, {
       cardList.addItem(createCard(result));
       popupAddForm.close();
     })
+
   }});
 popupAddForm.setEventListeners();
 
@@ -65,8 +67,12 @@ formEditProfileValidator.enableValidation();
         
 const userPopupForm = new PopupWithForm(data.params.formEditProfile, {
   handleSubmitForm: (item) => {
-    userInfo.setUserInfo(item);
-    userPopupForm.close();                
+    api.updateUser(item).then(result => {
+      userInfo.setUserInfo(result);
+      console.log(result)
+      userPopupForm.close(); 
+    })
+               
 }});              
 userPopupForm.setEventListeners();  
 data.openEditPopup.addEventListener('click', () => {                

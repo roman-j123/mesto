@@ -10,8 +10,8 @@ export default class UserInfo {
       description: this._userDescription.textContent,
     }
   }
-  setUserInfo({name, description}) {
-    this._userName.textContent = name;
-    this._userDescription.textContent = description;
+  setUserInfo(item) {
+    this._userName.textContent = item.name;
+    this._userDescription.textContent = item.about;
   }
 }
