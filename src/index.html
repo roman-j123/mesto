@@ -16,9 +16,9 @@
     <section class="profile">
       <img src="<%=require('./images/avatar.jpg')%>" class="profile__avatar" alt="Жак-Ив Кусто">
       <div class="profile__info">
-        <h1 class="profile__name"></h1>
+        <h1 class="profile__name">Имя аользователя</h1>
         <button class="profile__button profile__button_type_edit" type="button" title="Редактировать профиль" aria-label="Редактировать профиль"></button>
-        <p class="profile__description"></p>
+        <p class="profile__description">Описание пользователя</p>
       </div>
       <button class="profile__button profile__button_type_add" type="button" title="Добавить фотографию" aria-label="Добавить фотографию"></button>
     </section>
@@ -76,6 +76,13 @@
         <img class="popup__image" src="link" alt="Описание">
         <figcaption class="popup__figcaption"></figcaption>
       </figure>
+    </div>
+  </section>
+  <section class="popup popup_type_del">
+    <button class="popup__close" type="button" title="Закрыть окно" aria-label="Закрыть"></button>
+    <div class="popup__container">
+      <p class="popup__header">Вы уверены?</p>
+      <button type="button" class="popup__button">Да</button>
     </div>
   </section>
   <template id="template-card">

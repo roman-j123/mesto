@@ -1,9 +1,12 @@
 export class Card {
-  constructor(name, link, cardSelector, {handleClick}) {
-    this._name = name;
-    this._link = link;
+  constructor(data, cardSelector, {handleClick, handleDelete}) {
+    this._name = data.name;
+    this._link = data.link;
+    this._cardId = data._id;
+    this._userId = data.owner._id;
     this._cardSelector = cardSelector;
     this._handleClick = handleClick;
+    this._hadleDelete = handleDelete;
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.elements__image');
     this._cardElementLike = this._element.querySelector('.elements__like');
@@ -25,7 +28,7 @@ export class Card {
   _setEventListeners() {
     // Удаление карточки (Находим селектор кнопки -> Вешаем событие -> Возвращаем метод _deleteCard)
     this._element.querySelector('.elements__delete').addEventListener('click', ()=> {
-      return this._deleteCard();
+    this._hadleDelete(this);
     })
     // Лайк карточки (Находим селектор кнопки -> Вешаем событие -> Возвращаем метод _likeCard)
     this._cardElementLike.addEventListener('click', () => {
@@ -38,11 +41,18 @@ export class Card {
   }
   // Метод удаления карточки (Возвращаем удаление разметки карточки)
   _deleteCard() {
-    return this._element.remove();
+    this._element.remove();
+    this._element = null;
   }
   // Метод удаления карточки (Запишем нужный селектор в _cardElementLike -> Добавим класс like)
   _likeCard() {
     return this._cardElementLike.classList.toggle('elements__like_active');
+  }
+  getId() {
+    return this._cardId;
+  }
+  removeCard() {
+    return this._deleteCard();
   }
 
 }

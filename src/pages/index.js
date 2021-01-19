@@ -19,20 +19,37 @@ const popupWithImage = new PopupWithImage(data.params.popupZoom, data.params.zoo
 popupWithImage.setEventListeners();
 
 const userInfo = new UserInfo({userName: data.profileName, userDescription: data.profileDesc});
+
 const createCard = (result) => {
-  const card = new Card(result.name, result.link, '#template-card', 
-  {handleClick: () => {
-    popupWithImage.open(result.name, result.link);
-  }});
+  const card = new Card(result, '#template-card', 
+  {
+    handleClick: () => {
+      popupWithImage.open(result.name, result.link);
+      console.log(result._id);
+    },
+    handleDelete: () => {
+      api.removeCard(card.getId(result._id)).then(() => {
+        card.removeCard()
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    handleLikeCatd: () => {
+
+    }
+});
   const cardItem = card.generateCard();
+  console.log(result);
   return cardItem
 }
 Promise.all([
   api.getUser(),
   api.getCards()
 ]).then(res => {
-  userInfo.setUserInfo(res[0]);
-  cardList.rendererItems(res[1]);
+  userInfo.setUserInfo(res[0]); // Загружаем данные пользователя
+  cardList.rendererItems(res[1]); // Загружаем карточки пользователей
+}).catch(err => {
+  console.log(`Error: ${err}`);
 })
 
 const cardList = new Section({
@@ -69,7 +86,6 @@ const userPopupForm = new PopupWithForm(data.params.formEditProfile, {
   handleSubmitForm: (item) => {
     api.updateUser(item).then(result => {
       userInfo.setUserInfo(result);
-      console.log(result)
       userPopupForm.close(); 
     })
                

@@ -68,4 +68,13 @@ export default class Api {
             return Promise.reject(`Error: ${res.status}`);
         })
     }
+    removeCard(id) {
+        return fetch(`${this._address}/v1/${this._group}/cards/${id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            }
+        })
+    }
 }
