@@ -11,6 +11,7 @@ export const params =  {
   popupZoom: '.popup_type_zoom',
   zoomingImage: '.popup__image',
   zoomingFigcaption: '.popup__figcaption',
+  popupConfirm: '.popup_type_del',
 }
 export const page = document.querySelector('.page');
 //Окно редактирования профиля

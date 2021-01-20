@@ -4,6 +4,7 @@ import * as data from '../utils/config.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupConfirm from '../components/PopupConfirm.js'
 import { Card } from '../components/Card.js';
 import { FormValidator } from "../components/FormValidator.js";
 import UserInfo from '../components/UserInfo.js';
@@ -14,43 +15,47 @@ const api = new Api({
   token: 'd8d1cc1a-fc60-4366-9dd1-cd8eb0d5a40e', 
   groupId: 'cohort-19'
 });
-  //Создаем экземпляры карточек
 const popupWithImage = new PopupWithImage(data.params.popupZoom, data.params.zoomingImage, data.params.zoomingFigcaption);
 popupWithImage.setEventListeners();
-
+const popupConfirmDel = new PopupConfirm(data.params.popupConfirm);
+popupConfirmDel.setEventListeners();
 const userInfo = new UserInfo({userName: data.profileName, userDescription: data.profileDesc});
-
-const createCard = (result) => {
-  const card = new Card(result, '#template-card', 
-  {
-    handleClick: () => {
-      popupWithImage.open(result.name, result.link);
-      console.log(result._id);
-    },
-    handleDelete: () => {
-      api.removeCard(card.getId(result._id)).then(() => {
-        card.removeCard()
-      }).catch(err => {
-        console.log(err)
-      })
-    },
-    handleLikeCatd: () => {
-
-    }
-});
-  const cardItem = card.generateCard();
-  console.log(result);
-  return cardItem
-}
+let currentUserId;
 Promise.all([
   api.getUser(),
   api.getCards()
 ]).then(res => {
   userInfo.setUserInfo(res[0]); // Загружаем данные пользователя
+  currentUserId = res[0]._id;
   cardList.rendererItems(res[1]); // Загружаем карточки пользователей
 }).catch(err => {
   console.log(`Error: ${err}`);
 })
+const createCard = (result) => {
+  const card = new Card(result, currentUserId, '#template-card', 
+  {
+    handleClick: () => {
+      popupWithImage.open(result.name, result.link);
+    },
+    handleDelete: () => {
+      popupConfirmDel.setSubmitAction(() => {
+        api.removeCard(card.getId()).then(() => {
+          card.removeCard();
+          popupConfirmDel.close();
+        }).catch(err => {
+          console.log(err)
+        })
+      });
+      popupConfirmDel.open();
+    },
+    handleLikeCatd: () => {
+
+    }
+  });
+  const cardItem = card.generateCard();
+  return cardItem
+}
+
 
 const cardList = new Section({
   renderer: (item) => {
