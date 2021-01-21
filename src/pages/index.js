@@ -23,7 +23,7 @@ popupConfirmDel.setEventListeners();
 const userInfo = new UserInfo({
   userName: data.profileName, 
   userDescription: data.profileDesc,
-  userAvatar: data.avatarButton,
+  userAvatar: data.profileAvatar,
 });
 let currentUserId;
 Promise.all([
@@ -32,7 +32,6 @@ Promise.all([
 ]).then(res => {
   userInfo.setUserInfo(res[0]); // Загружаем данные пользователя
   currentUserId = res[0]._id;
-  console.log(res[0])
   cardList.rendererItems(res[1]); // Загружаем карточки пользователей
 }).catch(err => {
   console.log(`Error: ${err}`);
@@ -92,6 +91,8 @@ const popupAddForm = new PopupWithForm(data.params.formAddPhoto, {
     api.addNewCard(item.place, item.url).then(result => {
       cardList.addItem(createCard(result));
       popupAddForm.close();
+    }).catch(err => {
+      console.log(err)
     })
 
   }});
@@ -104,6 +105,8 @@ const userPopupForm = new PopupWithForm(data.params.formEditProfile, {
     api.updateUser(item).then(result => {
       userInfo.setUserInfo(result);
       userPopupForm.close(); 
+    }).catch(err => {
+      console.log(err)
     })               
 }});  
 
@@ -111,10 +114,11 @@ const formAddAvatarValidator = new FormValidator(data.params, data.params.popupA
 formAddAvatarValidator.enableValidation();
 const popupEditAvatar = new PopupWithForm(data.params.popupAvatar, {
   handleSubmitForm: (item) => {
-    console.log(item);
     api.updateAvatar(item).then(result => {
       userInfo.setUserInfo(result);
       popupEditAvatar.close();
+    }).catch(err => {
+      console.log(err)
     })
   }
 }) 
@@ -137,7 +141,7 @@ data.openEditPopup.addEventListener('click', () => {
 }); 
 
 popupEditAvatar.setEventListeners();
-data.avatarButton.addEventListener('click', () => {
+data.profileAvatarButton.addEventListener('click', () => {
   formAddAvatarValidator.disableButton()
   formAddAvatarValidator.clearErrors();
   popupEditAvatar.open();

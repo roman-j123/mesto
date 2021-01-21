@@ -36,5 +36,5 @@ export const closeZoomButton = document.querySelector(params.popupZoom).querySel
 
 export const formEditProfile = popupEdit.querySelector('.popup__form'); // Находим форму в DOM
 export const formAddPhoto = popupAdd.querySelector('.popup__form');
-export const avatarButton = document.querySelector('.profile__avatar');
-export const userAvatarBlock = document.querySelector('.profile__avatar');
+export const profileAvatar = document.querySelector('.profile__avatar');
+export const profileAvatarButton = document.querySelector('.profile__avatar-button');
