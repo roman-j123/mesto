@@ -2,6 +2,7 @@ export class Card {
   constructor(data, currentUserId ,cardSelector, {handleClick, handleDelete, handleLike}) {
     this._name = data.name;
     this._link = data.link;
+    this._userId = data.owner._id;
     this._cardId = data._id;
     this._likesArr = data.likes;
     this._currentUserId = currentUserId;
@@ -40,7 +41,8 @@ export class Card {
     })
     // Лайк карточки (Находим селектор кнопки -> Вешаем событие -> Возвращаем метод _likeCard)
     this._cardElementLike.addEventListener('click', () => {
-      this._handleLike(this.setLikes(this._likes))
+    this._handleLike(this.chekLikes())
+    this._cardElementLike.classList.toggle('elements__like_active')
     })
     // Превью карточки (Находим селектор -> Вешаем событие -> Возвращаем метод _previewCard)
     this._cardImage.addEventListener('click', () => {
@@ -60,17 +62,16 @@ export class Card {
   setLikes(likesArray) {
     this._likes = likesArray;
     this._cardElementLikeCounter.textContent = this._likes.length;
-    
-    let returnResult;
     for(let i = 0; i < this._likes.length; i++) {
       if(this._likes[i]._id == this._currentUserId) {
         this._cardElementLike.classList.add('elements__like_active');
-        returnResult = true
+        break; //break обязателен
       } else {
         this._cardElementLike.classList.remove('elements__like_active');
-        returnResult = false
       }
     }
-    return returnResult;
+  }
+  chekLikes() { 
+    return this._cardElementLike.classList.contains('elements__like_active')
   }
 }
