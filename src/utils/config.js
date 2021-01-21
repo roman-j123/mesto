@@ -12,6 +12,7 @@ export const params =  {
   zoomingImage: '.popup__image',
   zoomingFigcaption: '.popup__figcaption',
   popupConfirm: '.popup_type_del',
+  popupAvatar: '.popup_type_avatar',
 }
 export const page = document.querySelector('.page');
 //Окно редактирования профиля
@@ -35,3 +36,5 @@ export const closeZoomButton = document.querySelector(params.popupZoom).querySel
 
 export const formEditProfile = popupEdit.querySelector('.popup__form'); // Находим форму в DOM
 export const formAddPhoto = popupAdd.querySelector('.popup__form');
+export const avatarButton = document.querySelector('.profile__avatar');
+export const userAvatarBlock = document.querySelector('.profile__avatar');

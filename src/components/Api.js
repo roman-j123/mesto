@@ -110,15 +110,15 @@ export default class Api {
             return Promise.reject(`Error: ${res.status}`);
         })
     }
-    updateAvatar(link) {
-        return fetch(`${this._address}/v1/${this._group}/users/me/avatar `, {
+    updateAvatar(item) {
+        return fetch(`${this._address}/v1/${this._group}/users/me/avatar`, {
             method: 'PATCH',
             headers: {
                 authorization: this._token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                avatar: link
+                avatar: item.avatar,
             })
         }).then(res => {
             if(res.ok) {
