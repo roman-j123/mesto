@@ -65,7 +65,7 @@ export class Card {
     for(let i = 0; i < this._likes.length; i++) {
       if(this._likes[i]._id == this._currentUserId) {
         this._cardElementLike.classList.add('elements__like_active');
-        break; //break обязателен
+        break; 
       } else {
         this._cardElementLike.classList.remove('elements__like_active');
       }
