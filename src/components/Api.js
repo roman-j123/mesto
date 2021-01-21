@@ -75,6 +75,39 @@ export default class Api {
                 authorization: this._token,
                 'Content-Type': 'application/json'
             }
+        }).then(res => {
+            if(res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Error: ${res.status}`);
+        })
+    }
+    likeCard(id) {
+        return fetch(`${this._address}/v1/${this._group}/cards/likes/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: this._token,
+                'Conetent-Type': 'application/json'
+            }
+        }).then(res => {
+            if(res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Error: ${res.status}`);
+        })
+    }
+    dislikeCard(id) {
+        return fetch(`${this._address}/v1/${this._group}/cards/likes/${id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: this._token,
+                'Conetent-Type': 'application/json'
+            }
+        }).then(res => {
+            if(res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Error: ${res.status}`);
         })
     }
 }

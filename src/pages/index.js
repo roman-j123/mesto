@@ -19,6 +19,7 @@ const popupWithImage = new PopupWithImage(data.params.popupZoom, data.params.zoo
 popupWithImage.setEventListeners();
 const popupConfirmDel = new PopupConfirm(data.params.popupConfirm);
 popupConfirmDel.setEventListeners();
+
 const userInfo = new UserInfo({userName: data.profileName, userDescription: data.profileDesc});
 let currentUserId;
 Promise.all([
@@ -36,11 +37,13 @@ const createCard = (result) => {
   {
     handleClick: () => {
       popupWithImage.open(result.name, result.link);
+      console.log(result.likes)
+
     },
     handleDelete: () => {
       popupConfirmDel.setSubmitAction(() => {
-        api.removeCard(card.getId()).then(() => {
-          card.removeCard();
+        api.removeCard(card.getId()).then((result) => {
+          card.removeCard(result);
           popupConfirmDel.close();
         }).catch(err => {
           console.log(err)
@@ -48,11 +51,26 @@ const createCard = (result) => {
       });
       popupConfirmDel.open();
     },
-    handleLikeCatd: () => {
-
+    handleLike: (isLiked) => {
+      if(isLiked) {
+        api.dislikeCard(card.getId()).then((result) => {
+          card.setLikes(result.likes)
+          console.log(result.likes)
+        }).catch(err => {
+          console.log(err);
+        })
+      } else {
+        api.likeCard(card.getId()).then(result => {
+          card.setLikes(result.likes)
+          console.log(result.likes)
+        }).catch(err => {
+          console.log(err)
+        })
+      }   
     }
   });
   const cardItem = card.generateCard();
+
   return cardItem
 }
 

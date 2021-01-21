@@ -11,5 +11,5 @@ export default class PopupConfirm extends Popup {
     }
     setSubmitAction(submitAction) {
        this._handleSubmitCallback = submitAction;
-      }
+    }
 }
