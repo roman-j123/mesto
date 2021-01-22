@@ -44,8 +44,8 @@ const createCard = (result) => {
     },
     handleDelete: () => {
       popupConfirmDel.setSubmitAction(() => {
-        api.removeCard(card.getId()).then((result) => {
-          card.removeCard(result);
+        api.removeCard(card.getId()).then(() => {
+          card.removeCard();
           popupConfirmDel.close();
         }).catch(err => {
           console.log(err)
