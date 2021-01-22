@@ -88,13 +88,15 @@ const formAddPhotoValidator = new FormValidator(data.params, data.params.formAdd
 formAddPhotoValidator.enableValidation();
 const popupAddForm = new PopupWithForm(data.params.formAddPhoto, {
   handleSubmitForm: (item) => {
+    popupAddForm.isLoading(true);
     api.addNewCard(item.place, item.url).then(result => {
       cardList.addItem(createCard(result));
       popupAddForm.close();
     }).catch(err => {
       console.log(err)
+    }).finally(() => {
+      popupAddForm.isLoading(false);
     })
-
   }});
 
 // Окно редактирования профиля
@@ -102,23 +104,29 @@ const formEditProfileValidator = new FormValidator(data.params, data.params.form
 formEditProfileValidator.enableValidation();       
 const userPopupForm = new PopupWithForm(data.params.formEditProfile, {
   handleSubmitForm: (item) => {
+    userPopupForm.isLoading(true);
     api.updateUser(item).then(result => {
       userInfo.setUserInfo(result);
       userPopupForm.close(); 
     }).catch(err => {
       console.log(err)
-    })               
+    }).finally(() => {
+      userPopupForm.isLoading(false);
+    })          
 }});  
 
 const formAddAvatarValidator = new FormValidator(data.params, data.params.popupAvatar);
 formAddAvatarValidator.enableValidation();
 const popupEditAvatar = new PopupWithForm(data.params.popupAvatar, {
   handleSubmitForm: (item) => {
+    popupEditAvatar.isLoading(true);
     api.updateAvatar(item).then(result => {
       userInfo.setUserInfo(result);
       popupEditAvatar.close();
     }).catch(err => {
       console.log(err)
+    }).finally(() => {
+      popupEditAvatar.isLoading(false);
     })
   }
 }) 

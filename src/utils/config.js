@@ -38,3 +38,4 @@ export const formEditProfile = popupEdit.querySelector('.popup__form'); // На�
 export const formAddPhoto = popupAdd.querySelector('.popup__form');
 export const profileAvatar = document.querySelector('.profile__avatar');
 export const profileAvatarButton = document.querySelector('.profile__avatar-button');
+
