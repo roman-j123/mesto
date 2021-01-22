@@ -29,10 +29,10 @@ let currentUserId;
 Promise.all([
   api.getUser(),
   api.getCards()
-]).then(res => {
-  userInfo.setUserInfo(res[0]); // Загружаем данные пользователя
-  currentUserId = res[0]._id;
-  cardList.rendererItems(res[1]); // Загружаем карточки пользователей
+]).then(([userData, cards]) => {
+  userInfo.setUserInfo(userData); // Загружаем данные пользователя
+  currentUserId = userData._id;
+  cardList.rendererItems(cards); // Загружаем карточки пользователей
 }).catch(err => {
   console.log(`Error: ${err}`);
 })
