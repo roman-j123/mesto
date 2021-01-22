@@ -57,7 +57,6 @@ const createCard = (result) => {
       if(isLiked) {
         api.dislikeCard(card.getId()).then((result) => {
           card.setLikes(result.likes)
-          console.log(result.likes)
         }).catch(err => {
           console.log(err);
         })

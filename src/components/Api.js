@@ -4,6 +4,14 @@ export default class Api {
         this._token = token;
         this._group = groupId;
     }
+    _checkResponse() {
+        return res => {
+            if(res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Error: ${res.status}`);
+        }
+    }
     getCards() {
         return fetch(`${this._address}/v1/${this._group}/cards`, {
             method: 'GET',
@@ -11,12 +19,7 @@ export default class Api {
                 authorization: this._token,
                 'Content-Type': 'application/json'
             }
-        }).then(res => {
-            if(res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-        })
+        }).then(this._checkResponse())
     }
     getUser() {
         return fetch(`${this._address}/v1/${this._group}/users/me`, {
@@ -25,12 +28,7 @@ export default class Api {
                 authorization: this._token,
                 'Content-Type': 'application/json'
             }
-        }).then(res => {
-            if(res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-        })
+        }).then(this._checkResponse())
     }
     updateUser(item) {
         return fetch(`${this._address}/v1/${this._group}/users/me`, {
@@ -43,12 +41,7 @@ export default class Api {
                 name: item.name,
                 about: item.description
             })
-        }).then(res => {
-            if(res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-        })
+        }).then(this._checkResponse())
     }
     addNewCard(name, link) {
         return fetch(`${this._address}/v1/${this._group}/cards`, {
@@ -61,12 +54,7 @@ export default class Api {
                 name: name,
                 link: link
             })
-        }).then(res => {
-            if(res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-        })
+        }).then(this._checkResponse())
     }
     removeCard(id) {
         return fetch(`${this._address}/v1/${this._group}/cards/${id}`, {
@@ -75,12 +63,7 @@ export default class Api {
                 authorization: this._token,
                 'Content-Type': 'application/json'
             }
-        }).then(res => {
-            if(res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-        })
+        }).then(this._checkResponse())
     }
     likeCard(id) {
         return fetch(`${this._address}/v1/${this._group}/cards/likes/${id}`, {
@@ -89,12 +72,7 @@ export default class Api {
                 authorization: this._token,
                 'Conetent-Type': 'application/json'
             }
-        }).then(res => {
-            if(res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-        })
+        }).then(this._checkResponse())
     }
     dislikeCard(id) {
         return fetch(`${this._address}/v1/${this._group}/cards/likes/${id}`, {
@@ -103,12 +81,7 @@ export default class Api {
                 authorization: this._token,
                 'Conetent-Type': 'application/json'
             }
-        }).then(res => {
-            if(res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-        })
+        }).then(this._checkResponse())
     }
     updateAvatar(item) {
         return fetch(`${this._address}/v1/${this._group}/users/me/avatar`, {
@@ -120,11 +93,6 @@ export default class Api {
             body: JSON.stringify({
                 avatar: item.avatar,
             })
-        }).then(res => {
-            if(res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-        })
+        }).then(this._checkResponse())
     }
 }
